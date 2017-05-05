@@ -235,12 +235,12 @@ namespace DieMob
 									{
 										if (Region.ReplaceMobs.ContainsKey(npc.netID))
 										{
-											npc.SetDefaultsFromNetId(Region.ReplaceMobs[npc.netID]);
+											npc.SetDefaults(TShock.Utils.GetNPCById(Region.ReplaceMobs[npc.netID]).type);
 											NetMessage.SendData((int)PacketTypes.NpcUpdate, -1, -1, NetworkText.Empty, i);
 										}
 										else if (Region.ReplaceMobs.ContainsKey(-100))
 										{
-											npc.SetDefaultsFromNetId(Region.ReplaceMobs[-100]);
+											npc.SetDefaults(TShock.Utils.GetNPCById(Region.ReplaceMobs[-100]).type);
 											NetMessage.SendData((int)PacketTypes.NpcUpdate, -1, -1, NetworkText.Empty, i);
 										}
 										else if (Region.Type == RegionType.Repel)
@@ -269,7 +269,7 @@ namespace DieMob
 				}
 				catch (Exception ex)
 				{
-					TShock.Log.ConsoleError(ex.Message);
+					TShock.Log.ConsoleError(ex.ToString());
 				}
 			}
 		}
